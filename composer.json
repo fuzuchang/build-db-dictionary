@@ -1,0 +1,30 @@
+{
+    "name": "db",
+    "description": "db.",
+    "keywords": ["framework", "db"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": ">=5.5.9",
+        "maatwebsite/excel": "~2.1.0",
+        "phpoffice/phpword": "v0.13.*",
+        "apfelbox/php-file-download": "^2.1"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+    },
+    "autoload-dev": {
+    },
+    "scripts": {
+    },
+    "repositories": [
+        {
+            "packagist": false
+        },
+        {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    ]
+}

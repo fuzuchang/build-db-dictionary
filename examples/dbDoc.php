@@ -7,7 +7,8 @@
 */
 
 include '../config.php';
+require_once '../vendor/autoload.php';
 require '../src/DbUtilities.php';
-
+set_time_limit(0);
 $DbUtilities = new DbUtilities();
 $DbUtilities->dbDocGeneration();

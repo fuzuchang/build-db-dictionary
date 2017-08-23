@@ -13,6 +13,7 @@ require '../file/kppw.php';
 include '../config.php';
 require '../src/DbUtilities.php';
 
+set_time_limit(0);
 
 if ($_POST) {
 	$DbUtilities = new DbUtilities ();

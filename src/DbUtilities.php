@@ -107,24 +107,31 @@ class DbUtilities {
 	* @time 2014-6-12上午10:55:25
 	 */
 	function dbDocGeneration(){
+
+        $css = file_get_contents(S_ROOT.'/node_modules/materialize-css/dist/css/materialize.min.css');
+
 		$arrDbStructure = $this->getDbStructure();
 		$strTable = '';
 		$i = 0;
 		foreach ($arrDbStructure as $k =>$v){
 			$i += 1;
-			$strTable .= '<h4>No.'.$i.'--表名:'.$k.'</h4>';
-			$strTable .= '<table>';
+			$strTable .= '<div class="row">
+      <div class="col s12"><h4 class="header">No.'.$i.'--表名:'.$k.'</h4>';
+			$strTable .= '<table class="highlight bordered">';
 			$strTable .= '<tr>
-					<th width="150px">字段名</th>
-					<th width="200px">字段类型</th>
-					<th width="850px">字段含义</th>
+					<th width="25%">字段名</th>
+					<th width="15%">字段类型</th>
+					<th width="60%">字段含义</th>
 				 </tr>';
 			$str = '';
 			foreach ($v as $k1=>$v1){
 				$str.= '<tr><td>'.$v1['fields_name'].'</td><td>'.$v1['fields_type'].'</td><td>'.$v1['fields_comment'].'</td></tr>';
 			}
-			$strTable .= $str.'</table><br><br>';
+			$strTable .= $str.'</table></div>
+    </div><br><br>';
 		}
+
+
 		
 		$strTable  = '<!DOCTYPE html>
 					<html lang="zh-cn">
@@ -132,13 +139,11 @@ class DbUtilities {
 						<meta charset="utf-8" /><title>'.DBNAME.'数据字典</title>
 					</head>
 					<style type="text/css">
-						table{border:1px solid black;border-collapse:collapse;}
-						table, td, th{border:1px solid black;}
-						tr{width:1200px;}
-						td{text-align:left;padding-left:10px;}
+					
+					'.$css.'
 							
 					</style>
-					<body>'.$strTable.'</body></html>';
+					<body><div class="container">'.$strTable.'</body></div></html>';
 		//生成html文件
 		$filepath = S_ROOT.'/file/'.DBNAME.'.php';
 		file_put_contents($filepath,$strTable);
